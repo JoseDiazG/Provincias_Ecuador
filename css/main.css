@@ -1,0 +1,7 @@
+.contenedor-letra{
+    text-align: left;
+    padding: 0.5em 0 0.5em 0;
+  }
+a .boton{
+  text-align: end !important;
+}
