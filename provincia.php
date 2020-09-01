@@ -2,13 +2,21 @@
   extract($_GET);
   require_once( "sparqllib.php" );
 
-  $sparqlArtistas = sparql_get("https://dbpedia.org/sparql", "SELECT ?s ?p ?o
+  $sparqlProvincias = sparql_get("https://dbpedia.org/sparql", "SELECT ?s ?p ?o
   WHERE{
    ?s rdf:type <http://dbpedia.org/class/yago/WikicatProvincesOfEcuador> .
    ?s ?p ?o
    FILTER regex(?s, '" .$url. "', 'i')
-   FILTER (lang(?o) = 'es')
+   FILTER (LANG(?o)='es')
   }
+");
+
+$sparqlProvinciass = sparql_get("https://dbpedia.org/sparql", "SELECT ?s ?p ?o
+WHERE{
+ ?s rdf:type <http://dbpedia.org/class/yago/WikicatProvincesOfEcuador> .
+ ?s ?p ?o
+ FILTER regex(?s, '" .$url. "', 'i')
+}
 ");
 
 ?>
@@ -59,28 +67,69 @@
 
   <!-- Descripcion de cada provincia -->
   <div class="container pt-4">
-        <?php foreach( $sparqlArtistas as $provi ){
 
-            if($provi['p'] == 'http://dbpedia.org/ontology/thumbnail'){
-                          
-              echo '<img class="rounded mx-auto d-block" src="'.$provi['o'].'" alt="ecudor">'; 
-            }
-          
-            if($provi['p'] == 'http://www.w3.org/2000/01/rdf-schema#label'){
-              echo '<p class="center">'.$provi['o'].'</p>'; 
-            }
-            
-            if($provi['p'] == 'http://dbpedia.org/ontology/abstract'){
-              
-              echo '<p class="text-justify">'.$provi['o'].'</p>'; 
-            } 
-            
-       } ?>
+  <?php foreach( $sparqlProvincias as $provi ){
+
+    if($provi['p'] == 'http://www.w3.org/2000/01/rdf-schema#label'){
+      echo '<h1 class="text-center p-4">'.$provi['o'].'</h1>'; 
+    }
+
+} ?>
+ 
+
+  <?php foreach( $sparqlProvinciass as $provis ){
+ 
+
+    if($provis['p'] == 'http://dbpedia.org/ontology/thumbnail'){
+                              
+      echo '<img class="rounded mx-auto d-block" src="'.$provis['o'].'" alt="ecudor">'; 
+    }
+
+  } ?>
+  
+  <?php foreach( $sparqlProvincias as $provi ){
+
+      if($provi['p'] == 'http://dbpedia.org/ontology/abstract'){
+        
+        echo '<p class="text-justify p-4">'.$provi['o'].'</p>'; 
+      }
+  
+  } ?>
+
+    <?php foreach( $sparqlProvinciass as $provis ){
+    
+    if($provis['p'] == 'http://www.w3.org/2003/01/geo/wgs84_pos#lat'){
+
+      echo ' <table class="table">
+        <h1>Datos Geográficos<h1>
+        <tbody>
+        <tr>
+        <th scope="row">Latitud :</th>
+        <td>'. $provis['o'].'</td>
+        </tr>
+        </tbody>
+        </table>';
+                     
+    }
+
+    if($provis['p'] == 'http://www.w3.org/2003/01/geo/wgs84_pos#long'){
+
+      echo ' <table class="table">
+        <tbody>
+        <tr>
+        <th scope="row">Longitud :</th>
+        <td>'. $provis['o'].'</td>
+        </tr>
+        </tbody>
+        </table>';
+
+    }
+
+    } ?>
         
   </div>
-  
-  
 
+  
 
   <!-- Footer -->
   <footer class="footer bg-light">
