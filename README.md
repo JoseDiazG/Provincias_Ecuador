@@ -1,10 +1,10 @@
 # Provincias_Ecuador
 
-El siguiente trabajo se realizo por el estudiante José Luis Díaz   
-de la carrera de Ing.Sistemas Informaticos y Computacion 
-de la Universidad Técnica Particular de Loja - Ecuador 
-en la materia de Sistemas Basados en el Conocimiento dictada por el Phd. Nelson Piedra
-El trabajo con siste en realizar una pagina web que permita el aprendizaje a diferentes personas sobre las provincias 
+El siguiente trabajo se realizo por el estudiante: *José Luis Díaz*   
+de la carrera de *Ing.Sistemas Informaticos y Computacion* 
+de la *Universidad Técnica Particular de Loja - Ecuador* 
+en la materia de Sistemas Basados en el Conocimiento dictada por el *Phd. Nelson Piedra*
+El trabajo consiste en realizar una pagina web que permita el aprendizaje a diferentes personas sobre las provincias 
 del Ecuador.
 
 Ulilizando Datos abiertos por lo cual utilziamos DBPEDIA.
